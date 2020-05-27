@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="assets/resume.css">
+	</head>
+	<body>
+		<div class="head">
+			<div class="head-left">
+				<img src="images/self.jpg"><br>
+				羅騰旭<br><br>
+				中原大學 資訊管理系
+			</div>
+			<div class="head-right">
+				<h1>
+				<p>把每天都過得充實，盡力完成所有事情，</p>
+				<p class="line">如果完成不了，還有明天。</p>
+				</h1>
+				<br>
+				<div class="about">
+					<ul>
+						<li>About me:</li>
+						<li>出生地:苗栗</li>
+						<li>TEL:0919091036</li>
+						<li><a href="mailto:wall.up99@gmail.com">mail to me</a></li>
+					</ul>
+					<div class="nav">
+						<ul>
+							<li><a href="https://github.com/ianian0609"><img src="images/github.png" ></a></li>
+							<li><a href="https://instagram.com/lts_0609?r=nametag"><img src="images/ig.png" style="width: 85px; height: 85px; margin-top: -8px;"></a></li>
+							<li><a href="https://www.facebook.com/profile.php?id=100002453548444"><img src="images/fb.png"></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="below">
+			
+			<div class="below-left">
+				
+				<h1>專業技能</h1>
+				<div id="bars">
+					<div class="bar" data-percent="99">
+						<p>吃美食</p>
+						<canvas class="bar-circle" width="70" height="70"></canvas>
+					</div>
+					<div class="bar" data-percent="90">
+						<p>耍廢</p>
+						<canvas class="bar-circle" width="70" height="70"></canvas>
+					</div>
+					<div class="bar" data-percent="90">
+						<p>踏青</p>
+						<canvas class="bar-circle" width="70" height="70"></canvas>
+					</div>
+					<div class="bar" data-percent="90">
+						<p>睡覺</p>
+						<canvas class="bar-circle" width="70" height="70"></canvas>
+					</div>
+					<div class="bar" data-percent="80">
+						<p>讀書</p>
+						<canvas class="bar-circle" width="70" height="70"></canvas>
+					</div>
+				</div>
+				<script>
+				(function() {
+				
+				var Progress = function( element ) {
+				
+				this.context = element.getContext( "2d" );
+				this.refElement = element.parentNode;
+				this.loaded = 0;
+				this.start = 4.72;
+				this.width = this.context.canvas.width;
+				this.height = this.context.canvas.height;
+				this.total = parseInt( this.refElement.dataset.percent, 10 );
+				this.timer = null;
+				
+				this.diff = 0;
+				
+				this.init();
+				};
+				
+				Progress.prototype = {
+				init: function() {
+				var self = this;
+				self.timer = setInterval(function() {
+					self.run();
+				}, 25);
+				},
+				run: function() {
+				var self = this;
+				
+				self.diff = ( ( self.loaded / 100 ) * Math.PI * 2 * 10 ).toFixed( 2 );
+				self.context.clearRect( 0, 0, self.width, self.height );
+				self.context.lineWidth = 10;
+				self.context.fillStyle = "white";
+				self.context.strokeStyle = "black";
+				self.context.textAlign = "center";
+				
+				self.context.fillText( self.loaded + "%", self.width * .5, self.height * .5 + 2, self.width );
+				self.context.beginPath();
+				self.context.arc( 35, 35, 30, self.start, self.diff / 10 + self.start, false );
+				self.context.stroke();
+				
+				if( self.loaded >= self.total ) {
+				clearInterval( self.timer );
+				}
+				
+				self.loaded++;
+				}
+				};
+				
+				var CircularSkillBar = function( elements ) {
+				this.bars = document.querySelectorAll( elements );
+				if( this.bars.length > 0 ) {
+				this.init();
+				}
+				};
+				
+				CircularSkillBar.prototype = {
+				init: function() {
+				this.tick = 25;
+				this.progress();
+				
+				},
+				progress: function() {
+				var self = this;
+				var index = 0;
+				var firstCanvas = self.bars[0].querySelector( "canvas" );
+				var firstProg = new Progress( firstCanvas );
+				
+				
+				
+				var timer = setInterval(function() {
+				index++;
+					
+				var canvas = self.bars[index].querySelector( "canvas" );
+				var prog = new Progress( canvas );
+				
+				if( index == self.bars.length ) {
+						clearInterval( timer );
+				}
+				
+				}, self.tick * 100);
+				
+				}
+				};
+				
+				document.addEventListener( "DOMContentLoaded", function() {
+				var circularBars = new CircularSkillBar( "#bars .bar" );
+				});
+				
+				})();
+				</script>
+				<h1>程式技能</h1>
+				<div class="skillbox">
+					<p>Html5/Css</p>
+					<p>75%</p>
+					<div class="skill">
+						<div class="skill_level html" style="width: 75%"></div>
+					</div>
+				</div>
+				<div class="skillbox">
+					<p>Java</p>
+					<p>60%</p>
+					<div class="skill">
+						<div class="skill_level java" style="width: 60%"></div>
+					</div>
+				</div>
+				<div class="skillbox">
+					<p>JavaScript</p>
+					<p>55%</p>
+					<div class="skill">
+						<div class="skill_level js" style="width: 55%"></div>
+					</div>
+				</div>
+				<div class="skillbox">
+					<p>C#</p>
+					<p>65%</p>
+					<div class="skill">
+						<div class="skill_level c" style="width: 65%"></div>
+					</div>
+				</div>
+				<div class="skillbox">
+					<p>SQL</p>
+					<p>65%</p>
+					<div class="skill">
+						<div class="skill_level sql"></div>
+					</div>
+				</div>
+			</div>
+			<div class="below-right">
+				<h1>經歷</h1>
+				<br><br><br>
+				<button class="accordion">大一上學期 | 管理學-中原幼兒園</button>
+				<div class="panel">
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;大一的管理學讓我體驗到當小孩子的保母是多麼的不容易，小孩子無時無刻幾乎都處在非常有精神的狀態，要陪著他們到玩耍，還要聽他們說一些不知道在說什麼的事情，他們的體力就好像用不完一樣。雖然照顧小孩子是有一點累，但還是覺得他們非常的可愛，也從中學習到了許多事情，我認為是個非常難得的經驗。</p>
+				</div>
+				<br><br><br>
+				<button class="accordion">大一下學期 | 企業概論-天使蛋糕</button>
+				<div class="panel">
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;還沒開始上這堂課之前，聽說這堂課需要賣東西的時候就覺得很麻煩，但當真正開始上課時，才發現這堂課的有趣之處，不只老師很有趣，連上課的內容也十分吸引人。這堂課老師會派給大家要賣的東西和最終要達到的銷售業績，這過程非常的艱辛，從跟廠商洽談到印海報和傳單宣傳都十分的不容易，但能從中學到非常多東西，我認為這就像先體驗了出社會的感覺，讓人受益良多。</p>
+				</div>
+				<br><br><br>
+				<button class="accordion">大二上學期 | 網路程式設計-期末專題</button>
+				<div class="panel">
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;剛開始上課時還不覺得這堂課很難，但漸漸地就發現這堂課並不是這麼好過的，有許多後端的程式搞不清楚，其中我最搞不清楚的是要怎麼把資料庫和網頁連接在一起，雖然最後勉強通過了，但我認為我還是學得很差，如果真的能打這堂課學好的話，應該對未來會非常有用。</p>
+				</div>
+				<br><br><br>
+				<button class="accordion">大二下學期 | 多媒體程式設計-期末專題</button>
+				<div class="panel">
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;因為上學期網程沒有學好的緣故，加上本身對前端也比較有興趣，所以上每堂課時都會比較認真。對現在正在做的期末專題來說，也比上學期來的要輕鬆很多，雖然在js方面有許多問題，但還是會繼續努力的。</p>
+				</div>
+				<div class="link">
+				<ul>
+					<li>
+						<button type="submit"><a href="https://h564564.github.io/">期中專題</a></button>
+					</li>
+					<li>
+						<button type="submit"><a href="https://ianian0609.github.io/selfintro/selfintro.html">個人網頁</a></button>
+					</li>
+				</ul>
+				</div>
+				<script>
+				var acc = document.getElementsByClassName("accordion");
+				var i;
+				for (i = 0; i < acc.length; i++) {
+				acc[i].addEventListener("click", function() {
+				this.classList.toggle("active");
+				var panel = this.nextElementSibling;
+				if (panel.style.maxHeight) {
+				panel.style.maxHeight = null;
+				} else {
+				panel.style.maxHeight = panel.scrollHeight + "px";
+				}
+				});
+				}
+				</script>
+			</div>
+		</div>
+	</body>
+</html>
